@@ -1,0 +1,27 @@
+ //We need an enemy and a player. the player can choose how to attack the enemy
+//does player always go first? -yes
+//what kinds of things do both enemies and players have?
+/**
+ * mov will make things complicated
+ * a punch a kick, block or crouch
+ * ------------------------
+ * block beat punch /1/2 kick
+ * crouch beats kick 1/2 for punch
+ * punch straight damage -
+ * kick straight damage -
+ * -----------------------
+ * what we have in common
+ * every character (enemy and player) can: (actions)
+ * punch , block, kick, crouch
+ *
+ * attributes in common
+ * health, damage set in random int in range
+ * 100 hp, each attack if unblocked 5-15 damage
+ * if blocked half damage
+ *
+ * // differences
+ * player has option to choose
+ * enemy is random
+ *
+ *
+ */
