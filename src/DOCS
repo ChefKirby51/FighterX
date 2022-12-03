@@ -24,4 +24,22 @@
  * enemy is random
  *
  *
+ //What we want to do
+ Start the match
+ create a player and an enemy
+ player and enemy will make their decision
+
+ both moves happen at the same time
+ print the results
+
+ until one fighter is down
+ continue to
+ make decision
+ and fight
+ print results
+
+
+
+
+
  */

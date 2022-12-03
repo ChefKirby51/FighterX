@@ -25,15 +25,22 @@ public class Game {
         }
 
         if (menuInput == 1) {
-            fight();
+            fight(keyboard);
         } else {
             System.out.println("Goodbye.");
             System.exit(StatusCodes.OK);
         }
     }
 
-    public static void fight()
+    public static void fight(Scanner keyboard)
     {
-        //handle fight logic (this is going to be a lot of logic)
+        Player player = new Player(keyboard);
+        Enemy enemy = new Enemy();
+
+        player.makeDecision();
+        //have enemy make their decision
+
+        //have player and enemy do damage to eachother based on their choices
+        //make decisions again and repeat until one is dead, game over
     }
 }
