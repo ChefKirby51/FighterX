@@ -3,26 +3,33 @@ import java.util.Scanner;
 
 public class Player extends Fighter
 {
-    protected Scanner keyboard;
+    protected Scanner sc;
 
-    public Player(Scanner keyboard)
+    public Player(Scanner sc)
     {
-        this.keyboard = keyboard;
+        this.sc = sc;
     }
     @Override
     public void makeDecision()
     {
         //when the game starts we want to add a menu selection of start or exit. if the player chooses
         //to start, then we kick off our game logic.
-        System.out.println("Do you want to Attack or Defend?");
-        System.out.println("======================");
-        System.out.println("Type 1 to use offensive action.");
-        System.out.println("Type 2 to use defensive action.");
+        Menu decisionMenu = new Menu("Do you want to Attack or Defend?", sc);
+        decisionMenu.addOption("Attack.");
+        decisionMenu.addOption("Defend.");
+        decisionMenu.setChoiceMadeCallback((choice) -> {
+            this.decision = Fighter.Decisions.values()[choice - 1];
+            return choice;
+        });
+        decisionMenu.show();
 
-        int decisionInput;
+        System.out.println(this.decision);
+
+
+     /*   int decisionInput;
         while (true) {
             try {
-                decisionInput = this.keyboard.nextInt();
+                decisionInput = this.sc.nextInt();
 
                 if (decisionInput == 1) {
                     decision = Decisions.ATTACK;
@@ -35,7 +42,7 @@ public class Player extends Fighter
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please try again.");
-                this.keyboard.next();
+                this.sc.next();
             }
         }
 
@@ -71,7 +78,7 @@ public class Player extends Fighter
         int actionInput;
         while (true) {
             try {
-                actionInput = this.keyboard.nextInt();
+                actionInput = this.sc.nextInt();
                 //if the user typed in (actionInput) is between the min (1) and max (length of the actions).
                 // actionInput >= 1 and action input <= actionsLength
                 if (actionInput >= 1 && actionInput <= actionsLength) {
@@ -83,8 +90,8 @@ public class Player extends Fighter
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please try again.");
-                this.keyboard.next();
+                this.sc.next();
             }
-        }
+        }*/
     }
 }

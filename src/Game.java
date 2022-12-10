@@ -1,40 +1,31 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Game {
-    public static void start()
+    public static void start(Scanner sc)
     {
-        //when the game starts we want to add a menu selection of start or exit. if the player chooses
-        //to start, then we kick off our game logic.
-        Scanner keyboard = new Scanner(System.in);
-
-        System.out.println("Welcome to Fighters-X!");
-        System.out.println("======================");
-        System.out.println("Type 1 to begin a new fight.");
-        System.out.println("Type 2 to end the game.");
-
-        int menuInput;
-
-        while (true) {
-            try {
-                menuInput = keyboard.nextInt();
-                break;
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please try again.");
-                keyboard.next(); // this consumes the invalid token
+        Menu mainMenu = new Menu("Welcome to Fighters-X!", sc);
+        mainMenu.addOption("Begin a new fight.");
+        mainMenu.addOption("Exit.");
+        mainMenu.setChoiceMadeCallback((choice) -> {
+            if (choice == 1) { //fight
+                Game.fight(sc);
+            } else { //exit
+                Game.exit();
             }
-        }
-
-        if (menuInput == 1) {
-            fight(keyboard);
-        } else {
-            System.out.println("Goodbye.");
-            System.exit(StatusCodes.OK);
-        }
+            return choice;
+        });
+        mainMenu.show();
     }
 
-    public static void fight(Scanner keyboard)
+    public static void exit()
     {
-        Player player = new Player(keyboard);
+        System.out.println("Goodbye.");
+        System.exit(StatusCodes.OK);
+    }
+
+    public static void fight(Scanner sc)
+    {
+        Player player = new Player(sc);
         Enemy enemy = new Enemy();
 
         player.makeDecision();
